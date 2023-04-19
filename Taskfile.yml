@@ -1,0 +1,59 @@
+version: '3'
+
+env:
+  aws_account_id: 450285109346
+  aws_region: us-east-1
+  model_name: flan-t5-xxl
+
+tasks:
+  tar_model:
+    desc: Create model TAR
+    cmds:
+      - |
+        cd model
+        rm -rf model.tar.gz
+        tar -czf model.tar.gz code
+
+  upload_model:
+    desc: Upload model TAR to S3
+    cmds:
+      - |
+        cd model
+        aws s3 cp model.tar.gz s3://sagemaker-${aws_region}-${aws_account_id}/${model_name}/model.tar.gz
+
+  tf_init:
+    desc: Initialize Terraform
+    cmds:
+      - |
+        cd infrastructure
+        terraform init
+
+  tf_plan:
+    desc: Plan Terraform
+    cmds:
+      - |
+        cd infrastructure
+        terraform plan
+
+  sm_create_studio:
+    desc: Create SageMaker Resources
+    cmds:
+      - |
+        cd infrastructure
+        terraform apply -auto-approve
+
+  sm_destroy_studio:
+    desc: Destroy SageMaker Resources
+    cmds:
+      - |
+        cd infrastructure
+        terraform destroy -auto-approve
+
+  # This needs to be dockerized and deployed to ECS Fargate with an ALB target group
+  run_playground:
+    desc: Run Playground
+    cmds:
+      - |
+        python -m venv venv
+        pip install streamlit boto3
+        streamlit run playground.py --server.port 6006
