@@ -4,7 +4,7 @@
 
 ### Prerequisites - Runtimes
 
-Install the following binaries installed on your machine:
+Install the following binaries on your machine:
 
 ```bash
 brew install awscli
@@ -13,6 +13,15 @@ brew install terraform
 ```
 
 ### Prerequisites - AWS Resources
+
+Make sure your have an AWS account configured:
+
+```bash
+cat ~/.aws/config
+
+aws_access_key_id = [REDACTED]
+aws_secret_access_key = [REDACTED]
+```
 
 1. Clone the repo
     ```bash
@@ -34,6 +43,7 @@ brew install terraform
    ```bash
     task sm_create_studio
     ```
+### TODO: Add instructions to upload model to S3  
 
 ## Launching Jupyter Lab
 
@@ -41,7 +51,7 @@ brew install terraform
 
 ## Deploy LLM - Flan T5 XXL
 
-### TODO: Add instructions to deploy model using Jupyter notebook
+### TODO: Add instructions to deploy model using Jupyter Lab
 
 ## Consuming SageMaker Endpoint
 
