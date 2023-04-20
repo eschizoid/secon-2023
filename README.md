@@ -43,15 +43,22 @@ aws_secret_access_key = [REDACTED]
    ```bash
     task sm_create_studio
     ```
-### TODO: Add instructions to upload model to S3  
+6. Upload model to S3
+   ```bash
+    task tar_model
+    task upload_model
+    ```
 
 ## Launching Jupyter Lab
 
-### TODO: Add instructions to launch Jupyter Lab from AWS Console
+Once the infrastructure is up and running, you can access the Jupyter Lab by using the SageMaker console like the image
+belows shows:
+
+![](images/launch-jupyter-studio.png)
 
 ## Deploy LLM - Flan T5 XXL
 
-### TODO: Add instructions to deploy model using Jupyter Lab
+Once we are in Jupyter Lab we can follow the steps outlined in the notebook `deploy-to-sm-endpoint.ipynb`.
 
 ## Consuming SageMaker Endpoint
 
