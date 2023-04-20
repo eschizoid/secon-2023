@@ -50,7 +50,7 @@ resource "aws_sagemaker_user_profile" "aws_sagemaker_user_profile" {
   }
 }
 
-#resource "aws_sagemaker_app" "aws_sagemaker_app" {
+#resource "aws_sagemaker_app" "aws_sagemaker_app_jupyter_server" {
 #  app_name          = "default"
 #  domain_id         = aws_sagemaker_domain.aws_sagemaker_domain.id
 #  user_profile_name = aws_sagemaker_user_profile.aws_sagemaker_user_profile.user_profile_name
@@ -59,13 +59,14 @@ resource "aws_sagemaker_user_profile" "aws_sagemaker_user_profile" {
 #    instance_type = "ml.t3.medium"
 #  }
 #}
-#
-#resource "aws_sagemaker_app" "aws_sagemaker_app" {
-#  app_name          = "var.sm_app_name"
+
+#resource "aws_sagemaker_app" "aws_sagemaker_app_kernel_gateway" {
+#  app_name          = "kernel"
 #  domain_id         = aws_sagemaker_domain.aws_sagemaker_domain.id
 #  user_profile_name = aws_sagemaker_user_profile.aws_sagemaker_user_profile.user_profile_name
 #  app_type          = "KernelGateway"
 #  resource_spec {
 #    instance_type = "ml.t3.medium"
+#    sagemaker_image_arn = "arn:aws:sagemaker:us-east-1:123456789012:python/3.8.16-bullseye"
 #  }
 #}

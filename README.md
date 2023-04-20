@@ -49,24 +49,39 @@ aws_secret_access_key = [REDACTED]
     task upload_model
     ```
 
-## Launching Jupyter Lab
+## Provision Jupyter Lab
 
 Once the infrastructure is up and running, you can access the Jupyter Lab by using the SageMaker console like the image
 belows shows:
 
-![](images/launch-jupyter-studio.png)
+![](images/jupyter-lab-launch.png)
+
+And wait for AWS to provision the Jupyter and Kernel instances:
+
+![](images/jupyter-lab-wait.png)
+
+You should see a screen in Jupyter Studio like the following once both the Jupyter and Kernel instances are ready
+
+![](images/jupyter-lab-ready.png)
 
 ## Deploy LLM - Flan T5 XXL
 
-Once we are in Jupyter Lab we can follow the steps outlined in the notebook `deploy-to-sm-endpoint.ipynb`.
+From the Jupyter Lab, you can import this git repo and reference the notebook `notebooks/deploy-to-sm-endpoint.ipynb`.
+
+After importing the notebook into the Jupyter Lab we can proceed to deeploy the model like the image below shows. Its
+important to mention that this might take a co couple of minutes to complete.
+
+![](images/jupyter-lab-endpoint-1.png)
+
+After deploying the model you can verify if the SageMaker endpoint is ready by checking the status on the AWS Console:
+
+![](images/jupyter-lab-endpoint-2.png)
 
 ## Consuming SageMaker Endpoint
 
-![](images/flan-t5-xxl-playground.png)
-
 Inspired by the documentation on how to
 use [TensorBoard in SM Studio](https://docs.aws.amazon.com/sagemaker/latest/dg/studio-tensorboard.html), we can use the
-same mechanism to spin up a [Streamlit](https://streamlit.io) app in SM Studio.
+same mechanism to spin up a [Streamlit](https://streamlit.io) application.
 
 To do so, just execute the following command:
 
@@ -74,5 +89,8 @@ To do so, just execute the following command:
 task run_playground
 ```
 
-You will be able to access the playground
-on `https://<YOUR_STUDIO_ID>.studio.<YOUR_REGION>.sagemaker.aws/jupyter/default/proxy/6006/`.
+![](images/playground-ui.png)
+
+You will be able to access the playground on:
+
+`https://<YOUR_STUDIO_ID>.studio.<YOUR_REGION>.sagemaker.aws/jupyter/default/proxy/6006/`

@@ -35,14 +35,14 @@ tasks:
         cd infrastructure/terraform
         terraform plan
 
-  sm_create_studio:
+  tf_apply:
     desc: Create SageMaker Resources
     cmds:
       - |
         cd infrastructure/terraform
         terraform apply -auto-approve
 
-  sm_destroy_studio:
+  tf_destroy:
     desc: Destroy SageMaker Resources
     cmds:
       - |
@@ -54,6 +54,4 @@ tasks:
     desc: Run Playground
     cmds:
       - |
-        python -m venv venv
-        pip install streamlit boto3
         streamlit run playground.py --server.port 6006
