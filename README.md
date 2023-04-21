@@ -35,48 +35,35 @@ aws_secret_access_key = [REDACTED]
    ```bash
    task tf_plan
    ```
-4. Run Terraform apply
+4. Create SageMaker domain, user profile, and JupyterServer
    ```bash
    task tf_apply
    ```
-5. Create Sagemaker domain, user profile, JupyterServer and KernelGateway instances
-   ```bash
-   task sm_create_studio
-   ```
-6. Upload model to S3
+5. Upload model to S3
    ```bash
    task tar_model
    task upload_model
    ```
 
-## Provision JupyterServer
+## Provisioning JupyterServer
 
-Once the infrastructure is up and running, you can access the JupyterServer by using the SageMaker console like the
-image
-belows shows:
+Once the infrastructure is up and running, you can access the JupyterServer by clicking the button "Open Studio" in the
+SageMaker console:
 
-![](images/jupyter-lab-launch.png)
+![](images/jupyterserver-launch.png)
 
-And wait for AWS to provision the Jupyter and Kernel instances:
-
-![](images/jupyter-lab-wait.png)
-
-You should see a screen in Jupyter Studio like the following once both the Jupyter and Kernel instances are ready
-
-![](images/jupyter-lab-ready.png)
-
-## Deploy LLM - Flan T5 XXL
+## Deploying LLM - Flan T5 XXL
 
 From the JupyterServer, you can import this git repo and reference the notebook `notebooks/deploy-to-sm-endpoint.ipynb`.
 
 After importing the notebook into the JupyterServer we can proceed to deeploy the model like the image below shows. It's
 important to mention that this might take a co couple of minutes to complete.
 
-![](images/jupyter-lab-endpoint-1.png)
+![](images/jupyterserver-endpoint-1.png)
 
 After deploying the model you can verify if the SageMaker endpoint is ready by checking the status on the AWS Console:
 
-![](images/jupyter-lab-endpoint-2.png)
+![](images/jupyterserver-endpoint-2.png)
 
 ## Consuming SageMaker Endpoint
 
