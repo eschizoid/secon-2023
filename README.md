@@ -39,19 +39,20 @@ aws_secret_access_key = [REDACTED]
    ```bash
    task tf_apply
    ```
-5. Create Sagemaker domain, user profile and notebook instance
+5. Create Sagemaker domain, user profile, JupyterServer and KernelGateway instances
    ```bash
-    task sm_create_studio
-    ```
+   task sm_create_studio
+   ```
 6. Upload model to S3
    ```bash
-    task tar_model
-    task upload_model
-    ```
+   task tar_model
+   task upload_model
+   ```
 
-## Provision Jupyter Lab
+## Provision JupyterServer
 
-Once the infrastructure is up and running, you can access the Jupyter Lab by using the SageMaker console like the image
+Once the infrastructure is up and running, you can access the JupyterServer by using the SageMaker console like the
+image
 belows shows:
 
 ![](images/jupyter-lab-launch.png)
@@ -66,9 +67,9 @@ You should see a screen in Jupyter Studio like the following once both the Jupyt
 
 ## Deploy LLM - Flan T5 XXL
 
-From the Jupyter Lab, you can import this git repo and reference the notebook `notebooks/deploy-to-sm-endpoint.ipynb`.
+From the JupyterServer, you can import this git repo and reference the notebook `notebooks/deploy-to-sm-endpoint.ipynb`.
 
-After importing the notebook into the Jupyter Lab we can proceed to deeploy the model like the image below shows. Its
+After importing the notebook into the JupyterServer we can proceed to deeploy the model like the image below shows. It's
 important to mention that this might take a co couple of minutes to complete.
 
 ![](images/jupyter-lab-endpoint-1.png)

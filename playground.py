@@ -15,10 +15,10 @@ temperature = st.sidebar.slider("Temperature", min_value=0.0, max_value=1.0, val
 rep_penalty = st.sidebar.slider("Repetition Penalty", min_value=0.9, max_value=1.2, value=1.0)
 
 
-def generate_text(prompt):
+def generate_text(input_prompt: str) -> str:
     do_sample = temperature > 0
     payload = {
-        "inputs": prompt,
+        "inputs": input_prompt,
         "min_length": min_length,
         "max_length": max_length,
         "temperature": temperature,
