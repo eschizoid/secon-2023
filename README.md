@@ -56,12 +56,13 @@ SageMaker console:
 
 From the JupyterServer, you can import this git repo and reference the notebook `notebooks/deploy-to-sm-endpoint.ipynb`.
 
-After importing the notebook into the JupyterServer we can proceed to deeploy the model like the image below shows. It's
-important to mention that this might take a co couple of minutes to complete.
+After importing the notebook into the JupyterServer, you can proceed to deeploy the model like the image below shows:
+
+**It's important to mention that this step might take a couple of minutes to complete.**
 
 ![](images/jupyterserver-endpoint-1.png)
 
-After deploying the model you can verify if the SageMaker endpoint is ready by checking the status on the AWS Console:
+You can verify the model was deployed successfully by checking the SageMaker endpoint status on the AWS Console:
 
 ![](images/jupyterserver-endpoint-2.png)
 
