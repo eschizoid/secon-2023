@@ -1,16 +1,15 @@
 from transformers import T5ForConditionalGeneration, AutoTokenizer
 
 
-def model_fn(model_dir):
-    model = T5ForConditionalGeneration.from_pretrained("google/flan-t5-xxl",
-                                                       load_in_8bit=True, device_map="auto",
+def model_fn(model_dir) -> tuple:
+    model = T5ForConditionalGeneration.from_pretrained("google/flan-t5-xxl", load_in_8bit=True, device_map="auto",
                                                        cache_dir="/tmp/model_cache/")
     tokenizer = AutoTokenizer.from_pretrained("google/flan-t5-xxl")
 
     return model, tokenizer
 
 
-def predict_fn(data, model_and_tokenizer):
+def predict_fn(data, model_and_tokenizer) -> str:
     model, tokenizer = model_and_tokenizer
     text = data.pop("inputs", data)
 

@@ -58,7 +58,12 @@ From the JupyterServer, you can import this git repo and reference the notebook 
 
 After importing the notebook into the JupyterServer, you can proceed to deeploy the model like the image below shows:
 
-**It's important to mention that this step might take a couple of minutes to complete.**
+--- 
+**NOTE**
+
+It's important to mention that this step might take a couple of minutes to complete.
+
+---
 
 ![](images/jupyterserver-endpoint-1.png)
 
@@ -80,6 +85,4 @@ task run_playground
 
 ![](images/playground-ui.png)
 
-You will be able to access the playground on:
-
-`https://<YOUR_STUDIO_ID>.studio.<YOUR_REGION>.sagemaker.aws/jupyter/default/proxy/6006/`
+You will be able to access the playground on: `https://localhost/8501/`
