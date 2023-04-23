@@ -3,7 +3,7 @@ version: '3'
 env:
   aws_account_id: 450285109346
   aws_region: us-east-1
-  model_name: flan-t5-xxl
+  model_name: dolly-v2-12b
 
 tasks:
   tar_model:
@@ -12,7 +12,7 @@ tasks:
       - |
         cd model
         rm -rf model.tar.gz
-        tar -czf model.tar.gz code
+        tar -zcvf model.tar.gz code
 
   upload_model:
     desc: Upload TAR model to S3
@@ -49,9 +49,15 @@ tasks:
         cd infrastructure/terraform
         terraform destroy -auto-approve
 
-  # This needs to be dockerized and deployed to ECS Fargate with an ALB target group
+  # Deploy to ECS Fargate with an ALB target group?
   run_playground:
     desc: Run Playground
     cmds:
       - |
-        streamlit run playground.py --server.port 6006
+        docker build --tag playground .
+        docker run \
+          -e AWS_ACCESS_KEY_ID="${AWS_ACCESS_KEY_ID}" \
+          -e AWS_SECRET_ACCESS_KEY="${AWS_SECRET_ACCESS_KEY}" \
+          -e AWS_DEFAULT_REGION=us-east-1 \
+          -p 8501:8501 \
+          playground
