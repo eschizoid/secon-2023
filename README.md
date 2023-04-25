@@ -52,7 +52,7 @@ SageMaker console:
 
 ![](images/jupyterserver-launch.png)
 
-## Deploying LLM - Flan T5 XXL
+## Deploying LLM - Dolly V2 12B
 
 From the JupyterServer, you can import this git repo and reference the notebook `notebooks/deploy-to-sm-endpoint.ipynb`.
 
