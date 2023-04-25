@@ -3,7 +3,7 @@ version: '3'
 env:
   aws_account_id: 450285109346
   aws_region: us-east-1
-  model_name: flan-t5-xxl
+  model_name: dolly-v2-12b
 
 tasks:
   tar_model:
@@ -49,7 +49,7 @@ tasks:
         cd infrastructure/terraform
         terraform destroy -auto-approve
 
-  # This needs to be dockerized and deployed to ECS Fargate with an ALB target group
+  # Deploy to ECS Fargate with an ALB target group?
   run_playground:
     desc: Run Playground
     cmds:
