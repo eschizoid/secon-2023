@@ -3,23 +3,42 @@ version: '3'
 env:
   aws_account_id: 450285109346
   aws_region: us-east-1
-  model_name: dolly-v2-12b
+  dolly_v2_12b: "dolly-v2-12b"
+  flan_t5_xxl: "flan-t5-xxl"
+  mpt_7b_instruct: "mpt-7b-instruct"
+  all_minilm_l6_v2: "all-MiniLM-L6-v2"
 
 tasks:
   tar_model:
     desc: Create TAR model
     cmds:
       - |
-        cd model
-        rm -rf model.tar.gz
-        tar -zcvf model.tar.gz code
+        for name in ${dolly_v2_12b} ${flan_t5_xxl} ${mpt_7b_instruct} ${all_minilm_l6_v2}; do
+          if [[ -z "${name}" ]]; then
+            echo "Variable ${name} not set!"
+            exit 1
+          fi
+          echo "Creating TAR model for ${name}"
+          cd model/${name}
+          rm -rf model.tar.gz
+          tar -zcvf model.tar.gz code
+          cd ../..
+        done
 
   upload_model:
     desc: Upload TAR model to S3
     cmds:
       - |
-        cd model
-        aws s3 cp model.tar.gz s3://sagemaker-${aws_region}-${aws_account_id}/${model_name}/model.tar.gz
+        for name in ${dolly_v2_12b} ${flan_t5_xxl} ${mpt_7b_instruct} ${all_minilm_l6_v2}; do
+          if [[ -z "${name}" ]]; then
+            echo "Variable ${name} not set!"
+            exit 1
+          fi
+          echo "Uploading TAR model for ${name}"
+          cd model/${name}
+          aws s3 cp model.tar.gz s3://sagemaker-${aws_region}-${aws_account_id}/${name}/model.tar.gz
+          cd ../..
+        done
 
   tf_init:
     desc: Initialize Terraform

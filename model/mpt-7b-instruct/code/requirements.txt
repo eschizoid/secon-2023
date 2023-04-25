@@ -1,0 +1,5 @@
+accelerate
+bitsandbytes
+einops
+flash_attn
+transformers==4.26.0
